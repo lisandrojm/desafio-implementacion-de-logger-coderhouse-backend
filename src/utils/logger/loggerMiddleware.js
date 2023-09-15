@@ -1,4 +1,4 @@
-const { addLogger, developmentLogger, productionLogger } = require('./logger');
+const { developmentLogger, productionLogger } = require('./logger');
 const { args } = require('../../config/index');
 
 function loggerMiddleware(req, res, next) {

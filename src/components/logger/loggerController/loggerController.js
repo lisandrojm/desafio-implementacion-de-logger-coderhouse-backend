@@ -7,9 +7,14 @@
 class LoggerController {
   getLogger = async (req, res) => {
     try {
-      res.send({ message: '¡Prueba de loggerss!' }),
-        /* transporte file */
-        req.logger.warning('¡Alerta!');
+      /* transporte file */
+      req.logger.fatal('¡Alerta!');
+      /*       req.logger.error('¡Alerta!'); */
+      req.logger.warning('¡Alerta!');
+      req.logger.info('¡Alerta!');
+      req.logger.http('¡Alerta!');
+      req.logger.debug('¡Alerta!');
+      res.send({ message: '¡Test de loggers!' });
     } catch (error) {
       /* res.status(500).send({ error: 'Ha ocurrido un error' }); */
       return res.sendServerError('Ha ocurrido un error');
