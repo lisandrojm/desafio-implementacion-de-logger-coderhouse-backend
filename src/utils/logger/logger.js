@@ -7,15 +7,15 @@ const customLevelsOptions = {
   levels: {
     fatal: 0,
     error: 1,
-    warning: 2,
+    warn: 2,
     info: 3,
     http: 4,
     debug: 5,
   },
   colors: {
-    fatal: 'orange',
-    error: 'orange',
-    warning: 'yellow',
+    fatal: 'red',
+    error: 'red',
+    warn: 'yellow',
     info: 'blue',
     http: 'green',
     debug: 'magenta',
@@ -25,7 +25,7 @@ const customLevelsOptions = {
 winston.addColors(customLevelsOptions.colors);
 
 // Configuración del logger de desarrollo
-const developmentLogger = winston.createLogger({
+const devLogger = winston.createLogger({
   levels: customLevelsOptions.levels,
   transports: [
     new winston.transports.Console({
@@ -36,7 +36,7 @@ const developmentLogger = winston.createLogger({
 });
 
 // Configuración del logger de producción
-const productionLogger = winston.createLogger({
+const prodLogger = winston.createLogger({
   levels: customLevelsOptions.levels,
   transports: [
     new winston.transports.Console({
@@ -56,4 +56,4 @@ const productionLogger = winston.createLogger({
   ],
 });
 
-module.exports = { developmentLogger, productionLogger };
+module.exports = { devLogger, prodLogger };

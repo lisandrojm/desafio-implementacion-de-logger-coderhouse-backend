@@ -9,8 +9,8 @@ class LoggerController {
     try {
       /* transporte file */
       req.logger.fatal('¡Alerta!');
-      /*       req.logger.error('¡Alerta!'); */
-      req.logger.warning('¡Alerta!');
+      req.logger.error('¡Alerta!');
+      req.logger.warn('¡Alerta!');
       req.logger.info('¡Alerta!');
       req.logger.http('¡Alerta!');
       req.logger.debug('¡Alerta!');

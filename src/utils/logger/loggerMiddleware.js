@@ -1,13 +1,13 @@
-const { developmentLogger, productionLogger } = require('./logger');
+const { devLogger, prodLogger } = require('./logger');
 const { args } = require('../../config/index');
 
 function loggerMiddleware(req, res, next) {
   if (args.mode === 'production') {
-    req.logger = productionLogger;
-    console.log('~~~ productionLogger running ~~~');
+    req.logger = prodLogger;
+    req.logger.info('prodLogger running');
   } else {
-    req.logger = developmentLogger;
-    console.log('~~~ developmentLogger running ~~~');
+    req.logger = devLogger;
+    req.logger.info('devLogger running');
   }
   next();
 }
