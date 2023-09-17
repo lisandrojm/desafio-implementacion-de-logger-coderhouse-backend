@@ -35,6 +35,17 @@ const devLogger = winston.createLogger({
   ],
 });
 
+// Configuración del logger de desarrollo
+const stageLogger = winston.createLogger({
+  levels: customLevelsOptions.levels,
+  transports: [
+    new winston.transports.Console({
+      level: 'http', // Solo loggeará a partir del nivel http
+      format: winston.format.combine(winston.format.colorize({ colors: customLevelsOptions.colors }), winston.format.simple(), winston.format.timestamp()),
+    }),
+  ],
+});
+
 // Configuración del logger de producción
 const prodLogger = winston.createLogger({
   levels: customLevelsOptions.levels,
@@ -45,7 +56,7 @@ const prodLogger = winston.createLogger({
     }),
     new winston.transports.File({
       filename: './errors.log',
-      level: 'error', // Logueará errores en un archivo "errors.log"
+      level: 'error', // Logueará a partir de error en un archivo "errors.log"
       format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.printf(({ timestamp, level, message }) => {
@@ -56,4 +67,4 @@ const prodLogger = winston.createLogger({
   ],
 });
 
-module.exports = { devLogger, prodLogger };
+module.exports = { devLogger, stageLogger, prodLogger };
