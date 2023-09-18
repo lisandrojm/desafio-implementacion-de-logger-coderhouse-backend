@@ -21,8 +21,12 @@ const Dao = require('./dao/factory');
 /* faker products */
 const { generateFakeProducts } = require('./scripts/generateFakerProducts');
 const ErrorHandler = require('./utils/errors/index');
-/* const { addLogger } = require('./utils/logger/logger'); */
+/* Importar loggerMiddleware porque /src/index.js no se ejecutó aún */
 const loggerMiddleware = require('./utils/logger/loggerMiddleware');
+/* Aplicamos el middleware para configurar req.logger */
+const req = {};
+/* Llamamos al middleware con req */
+loggerMiddleware(req, null, () => {});
 
 class Server {
   constructor() {
@@ -77,8 +81,6 @@ class Server {
     this.app.use(passport.session());
     this.app.use(ErrorHandler);
     /* Middleware de logger */
-    /*     this.app.use(addLogger); */
-    /* Middleware de logger */
     this.app.use(loggerMiddleware);
   }
 
@@ -90,7 +92,8 @@ class Server {
 
   listen() {
     const server = this.app.listen(PORT, () => {
-      console.log(`~~~ Servidor en ejecución en http://localhost:${PORT} ~~~`);
+      /* console.log(`~~~ Servidor en ejecución en http://localhost:${PORT} ~~~`); */
+      req.logger.info(`Servidor en ejecución en http://localhost:${PORT}`);
       /* Crear productos con faker al iniciar */
       generateFakeProducts();
     });

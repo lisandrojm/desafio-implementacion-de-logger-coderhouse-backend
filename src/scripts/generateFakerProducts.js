@@ -7,6 +7,9 @@ const faker = require('faker');
 const { Product } = require('../models/products'); // Importa tu modelo de Producto
 const { productsServices } = require('../repositories/index');
 
+// Importar el objeto req configurado con el middleware
+const req = require('../utils/logger/loggerSetup');
+
 const NUM_FAKE_PRODUCTS = 20; // Ajusta la cantidad de productos falsos que deseas generar
 
 async function generateFakeProducts() {
@@ -31,9 +34,11 @@ async function generateFakeProducts() {
         await productsServices.save(fakeProduct);
       }
 
-      console.log('~~~ Productos creados exitosamente con Faker ~~~');
+      /* console.log('~~~ Productos creados exitosamente con Faker ~~~'); */
+      req.logger.info('Productos creados exitosamente con Faker');
     } else {
-      console.log('~~~ Ya existen productos en la base de datos. No se han creado productos con Faker ~~~');
+      /* console.log('~~~ Ya existen productos en la base de datos. No se han creado productos con Faker ~~~'); */
+      req.logger.info('Ya existen productos en la base de datos. No se han creado productos con Faker');
     }
   } catch (error) {
     console.error('Error generando productos falsos:', error);

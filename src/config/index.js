@@ -4,6 +4,7 @@
 
 const { program } = require('commander');
 const dotenv = require('dotenv');
+const { devLogger, stageLogger, prodLogger } = require('../utils/logger/logger'); // Importa los loggers
 
 /* ///////////////////////////////////////// */
 /* Commander */
@@ -14,13 +15,17 @@ const args = program.opts();
 let envFilePath = '';
 if (args.mode === 'production') {
   envFilePath = './.env.production';
-  console.log('~~~ Iniciando entorno Production ~~~');
+  /*   console.log('~~~ Iniciando entorno Production ~~~'); */
+  prodLogger.info('Iniciando entorno Production');
 } else if (args.mode === 'staging') {
   envFilePath = './.env.staging';
-  console.log('~~~ Iniciando entorno Staging ~~~');
+  /* console.log('~~~ Iniciando entorno Staging ~~~'); */
+  stageLogger.info('Iniciando entorno Staging');
+} else if (args.mode === 'staging') {
 } else {
   envFilePath = './.env.development';
-  console.log('~~~ Iniciando entorno Development ~~~');
+  /*   console.log('~~~ Iniciando entorno Development ~~~'); */
+  devLogger.info('Iniciando entorno Development');
 }
 /* ///////////////////////////////////////// */
 /* Comandos para las diferentes variables de entorno */

@@ -3,12 +3,17 @@
 /* ************************************************************************** */
 const mongoose = require('mongoose');
 const { db, persistence } = require('../config');
+
+/*  Importar el objeto req configurado con el middleware para utilizar logger 
+antes de la inicialización de la app */
+const req = require('../utils/logger/loggerSetup');
+
 mongoose.set('debug', false);
 mongoose.set('strictQuery', false);
 
 let Dao;
 
-switch (persistence) {
+switch ((req, persistence)) {
   case 'MONGO':
     let connection;
 
@@ -26,19 +31,22 @@ switch (persistence) {
 
     const DaoMongo = require('./mongo/dao.mongo');
     Dao = DaoMongo;
-    console.log('~~~ Conexión exitosa a persistencia MONGO Factory ~~~');
+    /*     console.log('~~~ Conexión exitosa a persistencia MONGO Factory ~~~'); */
+    req.logger.info('Conexión exitosa a persistencia MONGO Factory');
     break;
 
   case 'MEMORY':
     const DaoMemory = require('./memory/dao.memory');
     Dao = DaoMemory;
-    console.log('~~~ Conexión exitosa a persistencia MEMORY Factory ~~~');
+    /* console.log('~~~ Conexión exitosa a persistencia MEMORY Factory ~~~'); */
+    req.logger.info('Conexión exitosa a persistencia MEMORY Factory');
     break;
 
   case 'FILESYSTEM':
     const DaoFileSystem = require('./filesystem/dao.fylesystem');
     Dao = DaoFileSystem;
-    console.log('~~~ Conexión exitosa a persistencia FILESYSTEM Factory ~~~');
+    /* console.log('~~~ Conexión exitosa a persistencia FILESYSTEM Factory ~~~'); */
+    req.logger.info('Conexión exitosa a persistencia FILESYSTEM Factory');
     break;
 
   default:
