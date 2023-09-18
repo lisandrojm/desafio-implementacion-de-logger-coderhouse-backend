@@ -409,7 +409,7 @@ class CartsServices {
       const emailPayload = {
         from: 'lisandrojm@gmail.com', // Cambia esto a la dirección de tu correo
         to: username, // El destinatario es el usuario obtenido del token o la sesión
-        subject: 'FreeloECOM - Resultado de la compras',
+        subject: 'FreeloECOM - Resultado de la compra',
         html: emailContent,
       };
 
