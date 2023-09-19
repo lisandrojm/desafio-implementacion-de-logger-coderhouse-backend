@@ -9,6 +9,7 @@ const { config } = require('../../../config');
 /* Repository */
 const { cartsServices } = require('../../../repositories/index');
 const { usersServices } = require('../../../repositories/index');
+
 const req = require('../../../utils/logger/loggerSetup');
 
 class AuthServices {
@@ -56,9 +57,8 @@ class AuthServices {
       const token = await JWTService.generateJwt({ id: savedUser._id });
 
       /* Repository */
-      let updatedUser = await usersServices.findByIdAndUpdate(savedUser._id, { token }, { new: true });
+      /*       let updatedUser = await usersServices.findByIdAndUpdate(savedUser._id, { token }, { new: true }); */
       /*       console.log('~~~User registrado~~~', updatedUser); */
-      req.logger.debug('User registrado');
       return res.sendCreated({
         payload: {
           message: 'Usuario agregado correctamente',
@@ -88,24 +88,19 @@ class AuthServices {
         });
         if (!user) {
           /* console.log('~~~El usuario no existe en la base de datos!~~~'); */
-          /* console.log('~~~Credenciales inválidas~~~'); */
-          req.logger.error('Credenciales inválidas');
           return { status: 401, success: false, response: 'El usuario no existe en la base de datos!' };
         }
 
         if (!isValidPassword(password, user)) {
           /* console.log('~~~Credenciales inválidas~~~'); */
-          req.logger.error('Credenciales inválidas');
           return { status: 403, success: false, response: 'Credenciales inválidas' };
         }
 
         /* console.log('~~~Login jwt success!~~~', user); */
-        req.logger.debug('Login jwt success');
         return { status: 200, success: true, response: user, isAdminLogin: false };
       }
     } catch (error) {
       /* console.log(error); */
-      req.logger.fatal('Credenciales inválidas');
       return { status: 500, success: false, response: 'Error en el servidor' };
     }
   };
@@ -128,7 +123,6 @@ class AuthServices {
             resolve(response);
           }
           /*          console.log('Logout Session success'); */
-          req.logger.debug('Logout success');
         });
       });
 
