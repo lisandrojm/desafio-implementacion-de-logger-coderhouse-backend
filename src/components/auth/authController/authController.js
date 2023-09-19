@@ -36,6 +36,7 @@ class AuthController {
       res.cookie('jwt', token, { maxAge: 60 * 60 * 1000, httpOnly: true });
 
       const user = { _id, email, role, first_name, last_name, age, cart };
+
       response.user = user;
     }
 

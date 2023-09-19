@@ -38,7 +38,7 @@ async function generateFakeProducts() {
       req.logger.info('Productos creados exitosamente con Faker');
     } else {
       /* console.log('~~~ Ya existen productos en la base de datos. No se han creado productos con Faker ~~~'); */
-      req.logger.info('Ya existen productos en la base de datos. No se han creado productos con Faker');
+      req.logger.warn('Ya existen productos en la base de datos. No se han creado productos con Faker');
     }
   } catch (error) {
     console.error('Error generando productos falsos:', error);
