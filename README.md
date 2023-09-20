@@ -6,13 +6,13 @@ Este repositorio contiene el desafío "Implementación de logger" con las siguie
 
 - Definición de un sistema de niveles con la siguiente prioridad (de menor a mayor): debug, http, info, warning, error, fatal.
 
-- Implementación de un logger para Desarrollo y un logger para Producción:
+- Implementación de un logger para el entorno de Desarrollo y un logger para el entorno de Producción:
 
-  - El logger del entorno de Desarrollo :
+  - Logger del entorno de Desarrollo :
     - Loggea a partir del nivel debug, sólo en consola.
-  - El logger del entorno de Producción:
-    - Loggea sólo a partir de nivel info
-    - El logger envía en un transporte de archivos a partir del nivel de error en un nombre “errors.log”
+  - Logger del entorno de Producción:
+    - Loggea sólo a partir del nivel info
+    - El logger envía en un transporte de archivos a partir del nivel de error y guarda los datos en el archivo “errors.log”
 
 - Implementación de los logs de valor alto en los puntos importantes del servidor (errores, advertencias, etc) y modificación de los console.log() habituales que tenemos para que muestren todo a partir de winston.
 
@@ -92,6 +92,34 @@ Sigue estos pasos para instalar y configurar el proyecto:
    Asegúrate de reemplazar `<PUERTO_DE_LA_APP>` con el número de puerto especificado en el archivo `.env`.
 
 7. Ahora podrás utilizar la vista de Login en la aplicación.
+
+## Comandos para testing de las diferentes variables de entorno :
+
+### Desarrollo
+
+```bash
+node index.js -m development -p MONGO
+```
+
+### Producción
+
+```bash
+node index.js -m production -p MONGO
+```
+
+## Credenciales de Admin:
+
+### Email:
+
+```
+adminCoder@coder.com
+```
+
+### Password:
+
+```
+adminCod3r123
+```
 
 ## Credenciales de Admin:
 
