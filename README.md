@@ -1,6 +1,6 @@
 # DESAFÍO ENTREGABLE - Implementación de logger - Coderhouse/Backend
 
-Este repositorio contiene el desafío "Mocking y manejo de errores" con los siguientes características:
+Este repositorio contiene el desafío "Implementación de logger" con los siguientes características:
 
 ## Objetivos
 
