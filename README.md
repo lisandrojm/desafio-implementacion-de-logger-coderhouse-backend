@@ -11,7 +11,7 @@ Este repositorio contiene el desafío "Implementación de logger" con las siguie
   - Logger del entorno de Desarrollo :
     - Loggea a partir del nivel debug, sólo en consola.
   - Logger del entorno de Producción:
-    - Loggea sólo a partir del nivel info
+    - Loggea sólo a partir del nivel infoe
     - El logger envía en un transporte de archivos a partir del nivel de error y guarda los datos en el archivo “errors.log”
 
 - Implementación de los logs de valor alto en los puntos importantes del servidor (errores, advertencias, etc) y modificación de los console.log() habituales que tenemos para que muestren todo a partir de winston.
