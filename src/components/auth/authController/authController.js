@@ -7,7 +7,6 @@ const authServices = require('../authServices/authServices');
 const passport = require('passport');
 const { config } = require('../../../config');
 const jwt = require('jsonwebtoken');
-
 class AuthController {
   /* ///////////////////////////////////// */
   /* Jwt */
@@ -16,14 +15,14 @@ class AuthController {
     const payload = req.body;
     /*     console.log('register', payload); */
 
-    return await authServices.register(payload, res);
+    return await authServices.register(req, payload, res);
   };
 
   login = async (req, res, next) => {
     let { email, password } = req.body;
     const isAdminLogin = email === config.admin_email && password === config.admin_password;
 
-    const response = await authServices.login({ email, password, isAdminLogin });
+    const response = await authServices.login(req, { email, password, isAdminLogin });
 
     if (response.status === 200) {
       const { _id, email, role, first_name, last_name, age, cart } = response.response;

@@ -10,13 +10,11 @@ const { config } = require('../../../config');
 const { cartsServices } = require('../../../repositories/index');
 const { usersServices } = require('../../../repositories/index');
 
-const req = require('../../../utils/logger/loggerSetup');
-
 class AuthServices {
   /* ///////////////////////////////////// */
   /* Jwt */
   /* ///////////////////////////////////// */
-  register = async (payload, res) => {
+  register = async (req, payload, res) => {
     try {
       const { first_name, last_name, email, age, password } = payload;
 
@@ -57,8 +55,11 @@ class AuthServices {
       const token = await JWTService.generateJwt({ id: savedUser._id });
 
       /* Repository */
-      /*       let updatedUser = await usersServices.findByIdAndUpdate(savedUser._id, { token }, { new: true }); */
+      let updatedUser = await usersServices.findByIdAndUpdate(savedUser._id, { token }, { new: true });
       /*       console.log('~~~User registrado~~~', updatedUser); */
+
+      /*Logger */
+      req.logger.debug('User registrado', updatedUser);
       return res.sendCreated({
         payload: {
           message: 'Usuario agregado correctamente',
@@ -67,11 +68,13 @@ class AuthServices {
         },
       });
     } catch (error) {
+      /*Logger */
+      req.logger.error('Error al agregar el usuario');
       return res.sendServerError('Error al agregar el usuario');
     }
   };
 
-  login = async ({ email, password, isAdminLogin }) => {
+  login = async (req, { email, password, isAdminLogin }) => {
     try {
       if (isAdminLogin) {
         const adminUser = {
@@ -88,20 +91,27 @@ class AuthServices {
         });
         if (!user) {
           /* console.log('~~~El usuario no existe en la base de datos!~~~'); */
+          req.logger.debug('El usuario no existe en la base de datos');
           return { status: 401, success: false, response: 'El usuario no existe en la base de datos!' };
         }
 
         if (!isValidPassword(password, user)) {
-          /* console.log('~~~Credenciales inválidas~~~'); */
+          /*           console.log('~~~Credenciales inválidas~~~'); */
+          /*Logger */
+          req.logger.debug('Credenciales inválidas');
           return { status: 403, success: false, response: 'Credenciales inválidas' };
         }
 
         /* console.log('~~~Login jwt success!~~~', user); */
+        /*Logger */
+        req.logger.debug('Login jwt success');
         return { status: 200, success: true, response: user, isAdminLogin: false };
       }
     } catch (error) {
       /* console.log(error); */
-      return { status: 500, success: false, response: 'Error en el servidor' };
+      /*Logger */
+      req.logger.error('Error en el servidor durante el login');
+      return { status: 500, success: false, response: 'Error en el servidor durante el login' };
     }
   };
 
@@ -123,11 +133,15 @@ class AuthServices {
             resolve(response);
           }
           /*          console.log('Logout Session success'); */
+          /*Logger */
+          req.logger.debug('Logout success');
         });
       });
 
       return req.logoutResult;
     } catch (err) {
+      /*Logger */
+      req.logger.error('Error durante el logout');
       const response = { status: 500, success: false, error: 'Error durante el logout' };
       req.logoutResult = response;
       return response;
