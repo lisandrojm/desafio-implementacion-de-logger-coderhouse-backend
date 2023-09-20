@@ -36,7 +36,12 @@ Este repositorio contiene el desafío "Implementación de logger" con las siguie
 - `/src/components/logger/loggerController/loggerController.js`:Controlador de Logger.
 - `/src/components/logger/loggerServices/loggerServices.js`: Servicios de Logger.
 
-## Video demo
+## Video testing
+
+
+https://github.com/lisandrojm/desafio_implementacion_de_logger/assets/35199683/b0849d27-56b3-4bba-b54c-ef1e592bbeb7
+
+
 
 ## Requisitos
 
