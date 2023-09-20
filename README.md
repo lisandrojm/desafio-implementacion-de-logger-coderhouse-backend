@@ -11,12 +11,12 @@ Este repositorio contiene el desafío "Implementación de logger" con las siguie
   - Logger del entorno de Desarrollo :
     - Loggea a partir del nivel debug, sólo en consola.
   - Logger del entorno de Producción:
-    - Loggea sólo a partir del nivel infoe
-    - El logger envía en un transporte de archivos a partir del nivel de error y guarda los datos en el archivo “errors.log”
+    - Loggea sólo a partir del nivel info.
+    - El logger envía en un transporte de archivos a partir del nivel de error y guarda los datos en el archivo “errors.log”.
 
 - Implementación de los logs de valor alto en los puntos importantes del servidor (errores, advertencias, etc) y modificación de los console.log() habituales que tenemos para que muestren todo a partir de winston.
 
-- Creación de un endpoint /loggerTest que permite probar todos los logs
+- Creación de un endpoint /loggerTest que permite probar todos los logs.
 
 ## Aspectos incluidos:
 
@@ -208,13 +208,13 @@ Estas dependencias pueden ser instaladas ejecutando el comando `npm install` en 
 
 - Importante: Como el proyecto cuenta con un Middleware de autorización hay que realizar los siguientes pasos en Postman:
 
-  1.0 - Ir a Postman/Headers/Cookies/Manage Cookies
+  1.0 - Ir a Postman/Headers/Cookies/Manage Cookies.
 
-  2.0 - Type a domain name:localhost
+  2.0 - Type a domain name:localhost.
 
   3.0 - Template: Cookie_5=value; Path=/; Expires=Sun, 01 Sep 2024 22:47:37 GMT;
 
-  3.1 - Loguearse como Admin o como User según corresponda para testear la ruta
+  3.1 - Loguearse como Admin o como User según corresponda para testear la ruta.
 
   3.2 - Una vez logueado ingresar a Application/Cookies/http://localhost:8080 y copiar el value del token jwt.
 
@@ -224,4 +224,4 @@ Estas dependencias pueden ser instaladas ejecutando el comando `npm install` en 
 
   jwt=ey123456789wolrtjlwkjt.eyJfaWQiOiI2NGY3YzBkY2ZmMzY2NmQ4YTdjMDA0MDciLCJlbWFpbCI6InVzZXJAY29ycmVvLmNvbSIsInJvbGUiOiJhZG1pbiIsImZpcnN0X25hbWUiOiJ1c2VyIiwibGFzdF9uYW1lIjoidXNlciIsImFnZSI6MzMsImNhcnQiOiI2NGY3YzBkY2ZmMzY2NmQ4YTdjMDA0MDkiLCJpYXQiOjE2OTQwNTU5OTgsImV4cCI6MTY5NDE0MjM5OH0.hIYn2frVQCVNBMGI5E4sRkTqCTBhSHQ0Th0uSOUtabc; Path=/; Expires=Fri, 06 Sep 2024 03:12:07 GMT;
 
-  3.5 - Tener en cuenta que los token de las cookies expiran por lo que para realizar varios tests hay que loguearse y volver a copiar y pegar el token en la cookie de Postman.
+  3.5 - Ten en cuenta que los tokens de las cookies expiran por lo que para realizar varios tests debes volver a loguearte y copiar y pegar el token en la cookie de Postman.
