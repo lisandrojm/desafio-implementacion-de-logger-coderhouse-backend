@@ -25,7 +25,7 @@ Este repositorio contiene el desafío "Implementación de logger" con las siguie
 <small>Directorios de referencia de la generación del módulo logger</small>
 
 - `/src/utils/logger/logger.js`: Import de winston, creación del logger con los transportes y definición de los niveles,colores y formatos .
-- `/src/utils/logger/loggerMiddleware.js`: Middleware de de logger.
+- `/src/utils/logger/loggerMiddleware.js`: Middleware de logger.
 - `/src/utils/logger/loggerSetup.js`: Módulo para poder importar req en los archivos que lo requieran.
 
 ### Endpoint /loggertest
