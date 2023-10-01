@@ -112,19 +112,6 @@ node index.js -m development -p MONGO
 node index.js -m production -p MONGO
 ```
 
-## Credenciales de Admin:
-
-### Email:
-
-```
-adminCoder@coder.com
-```
-
-### Password:
-
-```
-adminCod3r123
-```
 
 ## Credenciales de Admin:
 
